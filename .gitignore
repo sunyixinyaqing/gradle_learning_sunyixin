@@ -1,12 +1,18 @@
 #eclipse ignore
-    .settings/
-    .project
-    .classpath
+ .settings/
+ .project
+ .classpath
 # idea ignore
-    .idea/
-    *.ipr
-    *.iml
-    *.iws
+ .idea/
+ *.ipr
+ *.iml
+ *.iws
 #gradle
-    .gradle/
-    *.swp
+ *.swp
+.gradle/
+build/
+bin/
+target/
+classes/
+LICENSE.txt
+

@@ -1,0 +1,7 @@
+version = "this is the project version"
+description = "this is the project description"
+
+task showProjectProperties{
+    println version
+    println project.description
+}
