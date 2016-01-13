@@ -1,0 +1,55 @@
+task helloworld{
+    doLast {
+        println "Hello world"
+    }
+}
+task hello << {
+    println "Hello world2"
+}
+task upper << {
+    String someString = "mY_nAmE";
+    println "original text:" + someString
+    println "upper text:" + someString.toUpperCase()    
+
+}
+task count << {
+    4.times {print "$it "}
+}
+task intro(dependsOn:helloworld)<<{
+    println "I am gradle!"
+}
+4.times{
+    counter ->
+        task "task$counter" <<{
+            println "I am task number $counter"
+        }
+}
+task myTask  {
+    ext.myProperty ="myValue"
+}
+task printTaskProperties <<{
+    println myTask.myProperty
+}
+
+defaultTasks 'clean','run'
+
+task clean <<{
+    println "default cleaning"
+}
+task run << {
+    println "default running"
+}
+task distribution << {
+    println "we build the zip with version = $version"
+}
+task release(dependsOn:distribution) << {
+    println "we release now"
+}
+gradle.taskGraph.whenReady {
+    taskGraph ->
+        if(taskGraph.hasTask(release)){
+            version = '1.0'    
+        } else {
+            version = '1.0-SNAPSHOT'
+        }
+}
